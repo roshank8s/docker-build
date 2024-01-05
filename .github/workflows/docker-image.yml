@@ -16,14 +16,14 @@ jobs:
 
     - name: Set Image Tag
       id: set-image-tag
-      run: echo "::set-output name=tag::$(date +%s)"
+      run: echo "::set-output name=tag::v1"
 
     - name: Build Docker Image
       run: |
         docker build . --file Dockerfile --tag roshankumar402/my-image-name:${{ steps.set-image-tag.outputs.tag }}
 
     - name: Show Docker Image Tag
-      run: echo "Docker Image Tag:roshankumar402/my-image-name:${{ steps.set-image-tag.outputs.tag }}"
+      run: echo "Docker Image Tag: roshankumar402/my-image-name:${{ steps.set-image-tag.outputs.tag }}"
 
   push:
     runs-on: ubuntu-latest
