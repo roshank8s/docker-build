@@ -20,7 +20,7 @@ jobs:
 
     - name: Build Docker Image
       run: |
-        docker build . --file Dockerfile --tag my-image-name:${{ steps.set-image-tag.outputs.tag }}
+        docker build . --file Dockerfile --tag roshanumar402/my-image-name:${{ steps.set-image-tag.outputs.tag }}
 
     - name: Login to Docker Hub
       run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
@@ -40,7 +40,7 @@ jobs:
         username: ${{ secrets.SERVER_USERNAME }}
         key: ${{ secrets.SERVER_SSH_KEY }}
         script: |
-          docker pull my-image-name:${{ needs.build.outputs.set-image-tag.outputs.tag }}
+          docker pull roshanumar402/my-image-name:${{ needs.build.outputs.set-image-tag.outputs.tag }}
           docker stop my-container-name || true
           docker rm my-container-name || true
-          docker run -d --name my-container-name -p 80:80 my-image-name:${{ needs.build.outputs.set-image-tag.outputs.tag }}
+          docker run -d --name my-container-name -p 80:80 roshanumar402/my-image-name:${{ needs.build.outputs.set-image-tag.outputs.tag }}
