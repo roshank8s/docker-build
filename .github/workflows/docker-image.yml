@@ -23,7 +23,7 @@ jobs:
         docker build . --file Dockerfile --tag roshankumar402/my-image-name:${{ steps.set-image-tag.outputs.tag }}
 
     - name: Show Docker Image Tag
-      run: echo "Docker Image Tag: roshankumar402/my-image-name:${{ steps.set-image-tag.outputs.tag }}"
+      run: echo "Docker Image Tag:roshankumar402/my-image-name:${{ steps.set-image-tag.outputs.tag }}"
 
   push:
     runs-on: ubuntu-latest
